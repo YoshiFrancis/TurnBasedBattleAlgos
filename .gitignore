@@ -1,0 +1,5 @@
+*.swp
+CMakeUserPresets.json
+build/
+compile_commands.json
+.cache
