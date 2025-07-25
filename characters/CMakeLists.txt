@@ -10,6 +10,7 @@ target_sources(characters_lib
     src/Character.cpp
     src/NPC.cpp
     src/Player.cpp
+    src/Team.cpp
 )
 
 target_include_directories(characters_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)

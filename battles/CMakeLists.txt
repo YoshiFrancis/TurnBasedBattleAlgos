@@ -7,7 +7,10 @@ add_library(battles_lib STATIC)
 
 target_sources(battles_lib 
     PUBLIC
-    src/BattleArena.cpp
+    src/BattleGround.cpp
 )
+
+target_link_libraries(battles_lib PRIVATE characters_lib)
+target_include_directories(battles_lib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_executable(battles main.cpp)
