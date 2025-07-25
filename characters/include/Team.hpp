@@ -2,12 +2,14 @@
 #define TBA_TEAM_HPP
 
 #include "Action.hpp"
+#include "Character.hpp"
 
 #include <vector>
 
 namespace tba {
     class Team {
         private:
+            std::vector<Character> characters;
             int id;
 
         public:
