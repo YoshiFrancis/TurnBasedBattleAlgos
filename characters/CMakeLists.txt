@@ -13,4 +13,5 @@ target_sources(characters_lib
     src/Team.cpp
 )
 
+target_link_libraries(characters_lib PRIVATE decision_lib)
 target_include_directories(characters_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)

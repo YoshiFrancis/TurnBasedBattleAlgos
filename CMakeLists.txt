@@ -8,6 +8,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(GTest REQUIRED)
 
-add_subdirectory(characters)
 add_subdirectory(decision_makers)
+add_subdirectory(characters)
 add_subdirectory(battles)

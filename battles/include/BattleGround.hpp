@@ -3,10 +3,12 @@
 
 #include "Team.hpp"
 #include "Action.hpp"
+#include "DecisionMaker.hpp"
 
 #include <vector>
 #include <mutex>
 #include <queue>
+#include <unordered_set>
 
 namespace tba {
 
@@ -16,6 +18,7 @@ private:
   unsigned int round;
   std::priority_queue<Action> actions_q;
   std::mutex q_lock;
+  std::unordered_set<DecisionMaker, DMAKERHashFunction> decision_makers;
 
 public:
   BattleGround(std::vector<Team> &_teams);

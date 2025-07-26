@@ -4,12 +4,15 @@
 namespace tba {
 
 typedef unsigned int character_id;
+typedef unsigned int team_id;
 
 enum class ActionType {
     ATTACK1,
     ATTACK2,
     ATTACK3
 };
+
+enum class DecisionMakerID { HumanControllable, DecisionTree };
 
 class Action {
     private:

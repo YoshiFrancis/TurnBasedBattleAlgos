@@ -15,7 +15,7 @@ void BattleGround::end_battle() {}
 
 void BattleGround::initialize() {
     round = 0;
-    for (size_t i = 0; i < teams.size(); ++i) {
+    for (size_t i = 0; i < teams.size() * 1000; i += 1000) {
         teams[i].set_id(i);
     }
 }
@@ -43,10 +43,10 @@ void BattleGround::update_state() {
 // make concurrent via a worker pool in the future
 // TODO
 void BattleGround::ask_inputs() {
-    std::for_each(teams.begin(), teams.end(), [this](Team& team) {
-            std::vector<Action> actions = team.get_actions(teams);
-            for (auto& action : actions) 
-            actions_q.push(std::move(action));
+    std::for_each(decision_makers.begin(), decision_makers.end(), [this](const DecisionMaker& d_maker) {
+            Action action = d_maker.get_action(teams);
+            actions_q.push(action);
+
             });
 }
 

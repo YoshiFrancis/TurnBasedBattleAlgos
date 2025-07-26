@@ -7,18 +7,25 @@
 #include <vector>
 
 namespace tba {
-    class Team {
-        private:
-            std::vector<Character> characters;
-            int id;
 
-        public:
-            bool has_living_character() const;
-            void set_id(size_t id);
 
-            std::vector<Action> get_actions(const std::vector<Team>& teams);
-        private:
-    };
+class Team {
+    private:
+        std::vector<Character> characters;
+        team_id id;
+        std::vector<std::tuple<character_id, DecisionMakerID>> decision_types;
+
+    public:
+        Team(std::vector<Character> _characters);
+        void set_id(team_id id);
+
+        bool has_living_character() const;
+        std::vector<std::tuple<character_id, DecisionMakerID>> get_decision_types() const;
+
+    private:
+        std::vector<std::tuple<character_id, DecisionMakerID>> gen_decision_types() const;
+};
+
 }
 
 #endif
