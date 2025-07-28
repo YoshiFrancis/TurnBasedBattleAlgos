@@ -20,7 +20,8 @@ TEST(JSON, LoadJsonFile) {
       {"health", 100},
       {"speed", 100},
       {"attack_dmg", 100},
-      {"element", "FIRE"}};
+      {"element", "FIRE"},
+      {"dm_id", 0}};
 
   EXPECT_EQ(expected_data, data);
 }
@@ -33,6 +34,7 @@ TEST(Characters, LoadFile) {
       << "test_stats expected: " << test_stats.get_readable_info();
   EXPECT_EQ(test.get_name(), "Testa");
   EXPECT_EQ(test.get_desc(), "Used for testing character json files");
+  EXPECT_EQ(test.get_dm_id(), tba::DecisionMakerID::TestAutoInput);
 
   tba::Character test2 = tba::Character("build/files/test2.json");
   tba::Stats test_stats2(200, 200, 200, tba::ElementType::EARTH);
@@ -42,6 +44,7 @@ TEST(Characters, LoadFile) {
   EXPECT_EQ(test2.get_name(), "Twoah");
   EXPECT_EQ(test2.get_desc(),
             "Used for multiple testing characters json files");
+  EXPECT_EQ(test2.get_dm_id(), tba::DecisionMakerID::TestAutoInput);
 
   EXPECT_NE(test.get_stats(), test2.get_stats());
 }

@@ -17,8 +17,8 @@ private:
 
   Stats stats;
 
-  DecisionMakerID decision_type;
   character_id id;
+  DecisionMakerID dm_id;
 
 public:
   Character(const std::string &file_name);
@@ -26,8 +26,7 @@ public:
   void set_id(character_id _id);
 
   character_id get_id() const;
-  DecisionMakerID get_d_id() const;
-  DecisionMakerID get_decision_type() const;
+  DecisionMakerID get_dm_id() const;
   std::string get_name() const;
   std::string get_desc() const;
   bool is_alive() const;

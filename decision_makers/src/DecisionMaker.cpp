@@ -5,6 +5,8 @@
 
 using namespace tba;
 
+
+
 DecisionMaker::DecisionMaker(const Character& c, team_id _t_id, DecisionMakerID _d_id) 
     : character(c), c_id(c.get_id()), t_id(_t_id), d_id(_d_id) 
 {}

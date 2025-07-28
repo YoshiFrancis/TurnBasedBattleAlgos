@@ -32,7 +32,7 @@ std::vector<std::tuple<character_id, DecisionMakerID>> Team::gen_decision_types(
     std::vector<std::tuple<character_id, DecisionMakerID>> d_types;
     std::for_each(characters.cbegin(), characters.cend(),
             [&d_types](const Character &c) {
-            d_types.emplace_back(c.get_id(), c.get_decision_type());
+            d_types.emplace_back(c.get_id(), c.get_dm_id());
             });
     return d_types;
 }

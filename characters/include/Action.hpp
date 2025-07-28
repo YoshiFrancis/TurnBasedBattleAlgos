@@ -12,7 +12,7 @@ enum class ActionType {
     ATTACK3
 };
 
-enum class DecisionMakerID { TestAutoInput, HumanControllable, DecisionTree };
+enum class DecisionMakerID { TestAutoInput = 0, HumanControllable = 1, DecisionTree = 2};
 
 class Action {
     private:
@@ -24,9 +24,9 @@ class Action {
     public:
 
         Action(character_id user, character_id target, ActionType _type);
-        ~Action();
+        ~Action() = default;
 
-        virtual bool operator<(const Action& other) const {
+        inline virtual bool operator<(const Action& other) const {
             return get_speed() < other.get_speed();
         }
 

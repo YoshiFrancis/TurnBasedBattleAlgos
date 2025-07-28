@@ -8,6 +8,8 @@ add_library(decision_lib STATIC)
 target_sources(decision_lib 
     PRIVATE
     src/DecisionMaker.cpp
+    src/dm.cpp
+    src/TestAutoInput.cpp
 )
 
 target_link_libraries(decision_lib PRIVATE characters_lib)

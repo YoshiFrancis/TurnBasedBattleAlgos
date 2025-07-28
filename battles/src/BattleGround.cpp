@@ -1,5 +1,7 @@
 #include "BattleGround.hpp"
 
+#include "dm.hpp"
+
 using namespace tba;
 
 BattleGround::BattleGround(std::vector<Team> &_teams) : teams(_teams), round(0)

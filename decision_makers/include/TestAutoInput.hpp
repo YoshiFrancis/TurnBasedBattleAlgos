@@ -5,12 +5,13 @@
 
 namespace tba {
 
-class TestAutoInputDM : DecisionMaker {
+class TestAutoInputDM : public DecisionMaker {
 
-    TestAutoInputDM(const Character& c, team_id _t_id, DecisionMakerID _d_id);
+    public:
+        TestAutoInputDM(const Character& c, team_id _t_id, DecisionMakerID _d_id);
 
-    virtual ~TestAutoInputDM()  = default;
-    Action get_action(const std::vector<Team>& teams) const override;
+        virtual ~TestAutoInputDM()  = default;
+        Action get_action(const std::vector<Team>& teams) const override;
 };
 
 }

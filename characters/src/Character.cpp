@@ -23,8 +23,8 @@ Character::Character(const std::string &file_path) {
 void Character::set_id(character_id _id) { id = _id; }
 
 character_id Character::get_id() const { return id; }
+DecisionMakerID Character::get_dm_id() const { return dm_id; }
 
-DecisionMakerID Character::get_decision_type() const { return decision_type; }
 
 bool Character::is_alive() const { return stats.get_health() > 0; }
 
@@ -72,6 +72,7 @@ bool Character::load_info_file(const std::string &file_path) {
     auto element_opt = get_element_type(data["element"]);
     if (!element_opt.has_value())
       return false;
+    dm_id = static_cast<DecisionMakerID>(data["dm_id"]);
     stats = Stats(health, speed, attack_dmg, element_opt.value());
     return true;
   } catch (std::exception &e) {
