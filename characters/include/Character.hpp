@@ -2,37 +2,37 @@
 #define TBA_CHARACTER_HPP
 
 #include "Action.hpp"
+#include "Stats.hpp"
 
 #include <string>
 #include <vector>
 
 namespace tba {
 
-enum class ElementType { FIRE, WATER, EARTH, AIR, LIGHT, DARK };
-
 class Character {
 
-  const std::string name;
-  const std::string desc;
+private:
+  std::string name;
+  std::string desc;
 
-  int health;
-  int speed;
-  int attack_dmg;
-  ElementType element;
+  Stats stats;
 
   DecisionMakerID decision_type;
   character_id id;
 
 public:
-  Character(const std::string &_name, const std::string &_desc, int _health,
-            int _speed, int _attack_dmg, ElementType _element,
-            DecisionMakerID d_type);
+  Character(const std::string &file_name);
 
   void set_id(character_id _id);
 
   character_id get_id() const;
   DecisionMakerID get_decision_type() const;
   bool is_alive() const;
+
+  const Stats get_stats() const;
+
+private:
+  bool load_info_file(const std::string &file_path);
 };
 
 } // namespace tba

@@ -12,7 +12,9 @@ target_sources(unit_tests
     test_decision_makers.cpp
 )
 
-target_link_libraries(unit_tests PRIVATE characters_lib battles_lib decision_makers_lib)
+target_link_libraries(unit_tests PRIVATE characters_lib)
+
+target_link_libraries(unit_tests PRIVATE GTest::gtest_main)
 
 include(GoogleTest)
 gtest_discover_tests(unit_tests DISCOVERY_MODE PRE_TEST)

@@ -11,6 +11,7 @@ target_sources(characters_lib
     src/NPC.cpp
     src/Player.cpp
     src/Team.cpp
+    src/Stats.cpp
 )
 
 target_link_libraries(characters_lib PRIVATE decision_lib)
