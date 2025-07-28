@@ -27,9 +27,12 @@ public:
 
   character_id get_id() const;
   DecisionMakerID get_decision_type() const;
+  std::string get_name() const;
+  std::string get_desc() const;
   bool is_alive() const;
 
   const Stats get_stats() const;
+  std::string get_readable_info() const;
 
 private:
   bool load_info_file(const std::string &file_path);

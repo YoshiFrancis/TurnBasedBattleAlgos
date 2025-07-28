@@ -1,9 +1,13 @@
 #ifndef TBA_STATS_HPP
 #define TBA_STATS_HPP
 
+#include <string>
+
 namespace tba {
 
 enum class ElementType { FIRE, WATER, EARTH, AIR, LIGHT, DARK };
+
+std::string element_to_str(ElementType element);
 
 class Stats {
 
@@ -16,6 +20,8 @@ private:
 public:
   Stats() = default;
   Stats(int h, int s, int ad, ElementType e);
+
+  std::string get_readable_info() const;
 
   int get_health() const;
   int get_speed() const;

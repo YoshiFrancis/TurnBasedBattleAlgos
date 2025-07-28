@@ -9,6 +9,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 enable_testing()
 
 find_package(GTest REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 add_subdirectory(decision_makers)
 add_subdirectory(characters)

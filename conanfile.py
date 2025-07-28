@@ -16,6 +16,7 @@ class Pkg(ConanFile):
     def requirements(self):
         self.requires("gtest/1.16.0")
         self.tool_requires("cmake/[>=3.25]")
+        self.requires("nlohmann_json/3.12.0")
 
     def build(self):
         cmake = CMake(self)

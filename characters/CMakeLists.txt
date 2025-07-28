@@ -14,5 +14,6 @@ target_sources(characters_lib
     src/Stats.cpp
 )
 
+target_link_libraries(characters_lib PUBLIC nlohmann_json::nlohmann_json)
 target_link_libraries(characters_lib PRIVATE decision_lib)
 target_include_directories(characters_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
