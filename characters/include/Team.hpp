@@ -5,6 +5,7 @@
 #include "Character.hpp"
 
 #include <vector>
+#include <deque>
 
 namespace tba {
 
@@ -17,6 +18,9 @@ class Team {
 
     public:
         Team(std::vector<Character> _characters);
+
+        const std::vector<Character>& get_characters();
+
         void set_id(team_id id);
 
         bool has_living_character() const;

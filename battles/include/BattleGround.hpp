@@ -8,17 +8,19 @@
 #include <vector>
 #include <mutex>
 #include <queue>
-#include <unordered_set>
+#include <unordered_map>
 
 namespace tba {
 
+
 class BattleGround {
+    typedef std::tuple<std::optional<std::reference_wrapper<Character>>, std::unique_ptr<DecisionMaker>> char_dm_tup;
 private:
   std::vector<Team>& teams;
+  std::unordered_map<character_id, char_dm_tup> characters;
   unsigned int round;
   std::priority_queue<Action> actions_q;
   std::mutex q_lock;
-  std::unordered_set<DecisionMaker, DMAKERHashFunction> decision_makers;
 
 public:
   BattleGround(std::vector<Team> &_teams);

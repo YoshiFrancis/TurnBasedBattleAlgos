@@ -26,6 +26,7 @@ public:
   void set_id(character_id _id);
 
   character_id get_id() const;
+  DecisionMakerID get_d_id() const;
   DecisionMakerID get_decision_type() const;
   std::string get_name() const;
   std::string get_desc() const;

@@ -36,7 +36,8 @@ struct DMAKERHashFunction {
     size_t operator()(const DecisionMaker& dmaker) const;
 };
 
-std::unique_ptr<DecisionMaker> get_decision_maker(const Character& c, team_id t_id, DecisionMakerID d_id);
+std::unique_ptr<DecisionMaker> get_decision_maker(const Character& c, team_id t_id);
+std::unique_ptr<DecisionMaker> get_user_decision_maker(const Character& c, team_id t_id);
 
 }
 

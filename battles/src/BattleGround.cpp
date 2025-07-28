@@ -15,8 +15,13 @@ void BattleGround::end_battle() {}
 
 void BattleGround::initialize() {
     round = 0;
-    for (size_t i = 0; i < teams.size() * 1000; i += 1000) {
-        teams[i].set_id(i);
+    for (size_t i = 0; i < teams.size(); ++i) {
+        team_id t_id = i * 1000;
+        teams[i].set_id(t_id);
+        auto characters_ref = teams[i].get_characters();
+        for (auto& character : characters_ref) {
+            characters[character.get_id()] = { character, tba::get_decision_maker(character, t_id)};
+        }
     }
 }
 
@@ -43,10 +48,10 @@ void BattleGround::update_state() {
 // make concurrent via a worker pool in the future
 // TODO
 void BattleGround::ask_inputs() {
-    std::for_each(decision_makers.begin(), decision_makers.end(), [this](const DecisionMaker& d_maker) {
-            Action action = d_maker.get_action(teams);
+    std::for_each(characters.begin(), characters.end(), [this](auto& p) {
+            auto& dm = std::get<1>(p.second);
+            Action action = dm->get_action(teams);
             actions_q.push(action);
-
             });
 }
 
@@ -54,8 +59,7 @@ void BattleGround::apply_actions() {
     while (!actions_q.empty()) {
         Action action = actions_q.top();
         actions_q.pop();
-        // if (action.user.is_alive() && action.target.is_alive())
-        //     action.apply();
+        // action.apply();
     }
 }
 

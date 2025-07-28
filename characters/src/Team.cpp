@@ -8,12 +8,21 @@ Team::Team(std::vector<Character> _characters)
     : characters(_characters), decision_types(gen_decision_types())
 { }
 
+const std::vector<Character>& Team::get_characters() {
+    return characters;
+}
+
 bool Team::has_living_character() const {
   return std::any_of(characters.cbegin(), characters.cend(),
                      [](const Character &c) { return c.is_alive(); });
 }
 
-void Team::set_id(team_id _id) { id = _id; }
+void Team::set_id(team_id _id) { 
+    id = _id; 
+    for (size_t i = 1; i < characters.size(); ++i) {
+        characters[i].set_id(id + i);
+    }
+}
 
 std::vector<std::tuple<character_id, DecisionMakerID>> Team::get_decision_types() const {
     return decision_types;
