@@ -12,7 +12,7 @@ target_sources(unit_tests
     test_decision_makers.cpp
 )
 
-target_link_libraries(unit_tests PRIVATE characters_lib)
+target_link_libraries(unit_tests PRIVATE characters_lib decision_lib)
 
 target_link_libraries(unit_tests PRIVATE GTest::gtest_main)
 

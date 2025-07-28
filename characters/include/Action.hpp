@@ -12,7 +12,7 @@ enum class ActionType {
     ATTACK3
 };
 
-enum class DecisionMakerID { HumanControllable, DecisionTree };
+enum class DecisionMakerID { TestAutoInput, HumanControllable, DecisionTree };
 
 class Action {
     private:
