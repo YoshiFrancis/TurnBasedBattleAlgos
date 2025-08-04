@@ -1,7 +1,6 @@
 #ifndef TBA_TEAM_HPP
 #define TBA_TEAM_HPP
 
-#include "Action.hpp"
 #include "Character.hpp"
 
 #include <vector>

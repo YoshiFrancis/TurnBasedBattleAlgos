@@ -4,11 +4,12 @@
 
 using namespace tba;
 
-TestAutoInputDM::TestAutoInputDM(const TeamContainer& teams)
-    : DecisionMaker(teams) {}
+TestAutoInputDM::TestAutoInputDM(character_id _c_id, team_id _t_id, const TeamContainer& teams) 
+    : DecisionMaker(_c_id, _t_id, teams) 
+{}
 
-Action TestAutoInputDM::get_action(team_id t_id, character_id c_id) const {
-  std::istringstream iss(dm_state_map.at(c_id));
+Action TestAutoInputDM::get_action() const {
+  std::istringstream iss(dm_state);
   std::string action;
   iss >> action;
   std::string target_c_id_str;

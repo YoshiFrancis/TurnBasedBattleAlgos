@@ -8,10 +8,10 @@ namespace tba {
 class TestAutoInputDM : public DecisionMaker {
 
     public:
-        TestAutoInputDM(const TeamContainer& teams);
+        TestAutoInputDM(character_id _c_id, team_id _t_id, const TeamContainer& teams);
 
         virtual ~TestAutoInputDM()  = default;
-        Action get_action(team_id t_id, character_id c_id) const override;
+        Action get_action() const override;
 };
 
 }
