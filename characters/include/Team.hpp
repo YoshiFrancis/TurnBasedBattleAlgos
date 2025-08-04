@@ -17,7 +17,7 @@ class Team {
         std::vector<std::tuple<character_id, DecisionMakerID>> decision_types;
 
     public:
-        Team(std::vector<Character> _characters);
+        Team(std::vector<Character> _characters = {});
 
         const std::vector<Character>& get_characters();
 

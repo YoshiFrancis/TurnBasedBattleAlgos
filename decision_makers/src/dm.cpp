@@ -2,11 +2,12 @@
 
 using namespace tba;
 
-std::unique_ptr<tba::DecisionMaker> tba::get_decision_maker(const Character &c,
-                                                            team_id t_id) {
+std::unique_ptr<tba::DecisionMaker> tba::get_decision_maker(const TeamContainer& teams) {
   return std::make_unique<tba::TestAutoInputDM>(
-      tba::TestAutoInputDM(c, t_id, c.get_dm_id()));
+      tba::TestAutoInputDM(teams));
 }
 
 std::unique_ptr<tba::DecisionMaker>
-tba::get_user_decision_maker(const Character &c, team_id t_id) {}
+tba::get_user_decision_maker(const Character &c, team_id t_id) {
+    return nullptr;
+}

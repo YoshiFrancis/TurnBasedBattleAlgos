@@ -5,32 +5,22 @@
 
 using namespace tba;
 
-
-
-DecisionMaker::DecisionMaker(const Character& c, team_id _t_id, DecisionMakerID _d_id) 
-    : character(c), c_id(c.get_id()), t_id(_t_id), d_id(_d_id) 
-{}
-
-
-Action DecisionMaker::get_action(const std::vector<Team>& teams) const {
-    return Action(0, 0, ActionType::ATTACK1);
-}
-
-bool DecisionMaker::operator==(const DecisionMaker& other) const {
-    return c_id == other.c_id && t_id == other.t_id && d_id == other.d_id;
-}
-
-
-void DecisionMaker::set_dm_state(const std::string& input) {
-    dm_state = input;
-}
-
-struct DMAKERHashFunction
+DecisionMaker::DecisionMaker(const TeamContainer& teams) 
+    : teams_ref(teams)
 {
-    size_t operator()(const DecisionMaker& dmaker) const
-    {
-        size_t xHash = std::hash<int>()(dmaker.get_c_id());
-        size_t yHash = std::hash<int>()(dmaker.get_t_id()) << 1;
-        return xHash ^ yHash;
-    }
-};
+    const std::unordered_map<team_id, Team>& teams_map = teams_ref.get_const_map_ref();
+    std::for_each(teams_map.begin(), teams_map.end(), [this](auto& p) {
+            auto decision_types = p.second.get_decision_types();
+            std::for_each(decision_types.begin(), decision_types.end(), [this](auto& s) {
+                    dm_map[std::get<0>(s)] = std::get<1>(s);
+                    });
+            });
+}
+
+Action DecisionMaker::get_action(team_id t_id, character_id c_id) const {
+    return Action(c_id, c_id, ActionType::ATTACK1);
+}
+
+void DecisionMaker::set_dm_state(character_id id, const std::string &input) {
+    dm_state_map[id] = input;
+}

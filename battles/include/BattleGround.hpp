@@ -13,8 +13,10 @@
 namespace tba {
 
 
+typedef std::tuple<std::optional<std::reference_wrapper<Character>>, std::unique_ptr<DecisionMaker>> char_dm_tup;
+
 class BattleGround {
-    typedef std::tuple<std::optional<std::reference_wrapper<Character>>, std::unique_ptr<DecisionMaker>> char_dm_tup;
+
 private:
   std::vector<Team>& teams;
   std::unordered_map<character_id, char_dm_tup> characters;

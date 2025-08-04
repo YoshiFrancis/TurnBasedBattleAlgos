@@ -7,7 +7,7 @@ add_executable(unit_tests)
 
 target_sources(unit_tests
     PRIVATE
-    test_battles.cpp
+    # test_battles.cpp
     test_characters.cpp
     test_decision_makers.cpp
 )

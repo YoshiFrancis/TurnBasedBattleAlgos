@@ -58,6 +58,20 @@ static std::optional<ElementType> get_element_type(const std::string &element) {
   return std::nullopt;
 }
 
+const Attack Character::get_attack1() const {
+    return attack1;
+}
+const Attack Character::get_attack2() const {
+    return attack2;
+}
+const Attack Character::get_attack3() const {
+    return attack3;
+}
+
+void Character::apply_attack(const Attack &&attack) {
+    stats.add_health(attack.damage);
+}
+
 bool Character::load_info_file(const std::string &file_path) {
   try {
     std::ifstream f(file_path);

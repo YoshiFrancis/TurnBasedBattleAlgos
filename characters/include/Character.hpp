@@ -1,8 +1,9 @@
 #ifndef TBA_CHARACTER_HPP
 #define TBA_CHARACTER_HPP
 
-#include "Action.hpp"
+#include "Attack.hpp"
 #include "Stats.hpp"
+#include "enums.hpp"
 
 #include <string>
 #include <vector>
@@ -14,6 +15,10 @@ class Character {
 private:
   std::string name;
   std::string desc;
+
+  Attack attack1;
+  Attack attack2;
+  Attack attack3;
 
   Stats stats;
 
@@ -33,6 +38,12 @@ public:
 
   const Stats get_stats() const;
   std::string get_readable_info() const;
+
+  const Attack get_attack1() const;
+  const Attack get_attack2() const;
+  const Attack get_attack3() const;
+
+  void apply_attack(const Attack &&attack);
 
 private:
   bool load_info_file(const std::string &file_path);

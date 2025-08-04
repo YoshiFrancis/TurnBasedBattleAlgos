@@ -1,43 +1,36 @@
 #ifndef TBA_ACTION_HPP
 #define TBA_ACTION_HPP
 
+#include "enums.hpp"
+#include "Character.hpp"
+
 namespace tba {
 
-typedef unsigned int character_id;
-typedef unsigned int team_id;
-
-enum class ActionType {
-    ATTACK1,
-    ATTACK2,
-    ATTACK3
-};
-
-enum class DecisionMakerID { TestAutoInput = 0, HumanControllable = 1, DecisionTree = 2};
 
 class Action {
-    private:
-        character_id user_id;
-        character_id target_id;
-        int speed;
-        ActionType type;
+private:
+  character_id user_id;
+  character_id target_id;
+  int speed;
+  ActionType type;
 
-    public:
+public:
+  Action(character_id user, character_id target, ActionType _type);
+  ~Action() = default;
 
-        Action(character_id user, character_id target, ActionType _type);
-        ~Action() = default;
+  inline virtual bool operator<(const Action &other) const {
+    return get_speed() < other.get_speed();
+  }
 
-        inline virtual bool operator<(const Action& other) const {
-            return get_speed() < other.get_speed();
-        }
-
-        character_id get_user_id() const;
-        character_id get_target_id() const;
-        ActionType get_type() const;
-        int get_speed() const;
-
-    private:
+  character_id get_user_id() const;
+  character_id get_target_id() const;
+  ActionType get_type() const;
+  int get_speed() const;
 };
 
-}
+void apply_action(Character& user, Character& target, const Action&& action);
+
+} // namespace tba
 
 #endif
+

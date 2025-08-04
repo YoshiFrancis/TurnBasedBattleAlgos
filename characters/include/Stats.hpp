@@ -3,9 +3,9 @@
 
 #include <string>
 
-namespace tba {
+#include "enums.hpp"
 
-enum class ElementType { FIRE, WATER, EARTH, AIR, LIGHT, DARK };
+namespace tba {
 
 std::string element_to_str(ElementType element);
 

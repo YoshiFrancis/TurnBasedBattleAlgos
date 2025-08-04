@@ -13,6 +13,8 @@ target_sources(characters_lib
     src/Team.cpp
     src/Stats.cpp
     src/Action.cpp
+    src/Attack.cpp
+    src/TeamContainer.cpp
 )
 
 target_link_libraries(characters_lib PUBLIC nlohmann_json::nlohmann_json)
