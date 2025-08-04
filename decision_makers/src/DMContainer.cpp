@@ -8,8 +8,11 @@ DMContainer::DMContainer(const TeamContainer &teams)
     const std::unordered_map<team_id, Team>& teams_map = teams_ref.get_const_map_ref();
     std::for_each(teams_map.begin(), teams_map.end(), [this](auto& p) {
             auto decision_types = p.second.get_decision_types();
-            std::for_each(decision_types.begin(), decision_types.end(), [this](auto& s) {
-                    dm_map[std::get<0>(s)] = tba::get_decision_maker(std::get<1>(s), p.first);
+            std::for_each(decision_types.begin(), decision_types.end(), [this, &p](auto& s) {
+                    DecisionMakerID dm_id = std::get<1>(s);
+                    character_id c_id = std::get<0>(s);
+                    team_id t_id = p.first;
+                    dm_map[std::get<0>(s)] = tba::get_decision_maker(dm_id, c_id, t_id, teams_ref);
                     });
             });
 }

@@ -3,6 +3,7 @@
 
 #include "Action.hpp"
 #include "TeamContainer.hpp"
+#include "dm.hpp"
 
 #include "DecisionMaker.hpp"
 
@@ -16,7 +17,7 @@ protected:
 public:
   DMContainer(const TeamContainer &teams);
   virtual ~DMContainer() = default;
-  virtual Action get_action(team_id t_id, character_id c_id) const;
+  virtual Action get_action(character_id c_id) const;
   void set_dm_state(character_id id, const std::string &input);
 };
 

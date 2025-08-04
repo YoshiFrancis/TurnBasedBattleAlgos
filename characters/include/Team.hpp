@@ -21,6 +21,7 @@ class Team {
         const std::vector<Character>& get_characters();
 
         void set_id(team_id id);
+        inline team_id get_id() const { return id; }
 
         bool has_living_character() const;
         std::vector<std::tuple<character_id, DecisionMakerID>> get_decision_types() const;

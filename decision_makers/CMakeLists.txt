@@ -7,9 +7,10 @@ add_library(decision_lib STATIC)
 
 target_sources(decision_lib 
     PRIVATE
+    src/DMContainer.cpp
     src/DecisionMaker.cpp
-    src/dm.cpp
     src/TestAutoInput.cpp
+    src/dm.cpp
 )
 
 target_link_libraries(decision_lib PRIVATE characters_lib)
