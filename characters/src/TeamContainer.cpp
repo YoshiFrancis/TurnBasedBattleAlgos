@@ -22,6 +22,7 @@ tba::load_teams_file(const std::string &file_path) {
     for (size_t i = 0; i < all_data.size(); ++i) {
       json curr_team_data = all_data[i];
       team_list.emplace_back(curr_team_data);
+      team_list.back().set_id(i);
     }
     return team_list;
   } catch (std::exception &e) {

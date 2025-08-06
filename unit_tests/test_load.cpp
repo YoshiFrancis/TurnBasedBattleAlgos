@@ -102,8 +102,8 @@ TEST(Loading, TestDMContainerLoad) {
     tba::TeamContainer tc(teams_list);
     tba::DMContainer dmc(tc);
 
-    tba::Action expected_action(0, 1000, tba::ActionType::ATTACK1);
-    tba::Action action = dmc.get_action(1);
+    tba::Action expected_action(0, 0, tba::ActionType::ATTACK1);
+    tba::Action action = dmc.get_action(0);
     EXPECT_EQ(expected_action.get_user_id(), action.get_user_id());
     EXPECT_EQ(expected_action.get_target_id(), action.get_target_id());
     EXPECT_EQ(expected_action.get_type(), action.get_type());

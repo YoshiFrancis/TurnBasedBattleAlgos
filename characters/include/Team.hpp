@@ -17,7 +17,7 @@ class Team {
 private:
   std::string team_name;
   std::vector<Character> characters;
-  team_id id;
+  team_id id = 0;
   std::vector<std::tuple<character_id, DecisionMakerID>> decision_types;
 
 public:

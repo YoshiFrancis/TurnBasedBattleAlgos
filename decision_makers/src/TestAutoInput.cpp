@@ -1,6 +1,7 @@
 #include "TestAutoInput.hpp"
 
 #include <sstream>
+#include <iostream>
 
 using namespace tba;
 
@@ -14,7 +15,12 @@ Action TestAutoInputDM::get_action() const {
   iss >> action;
   std::string target_c_id_str;
   iss >> target_c_id_str;
-  character_id target_c_id = std::stoi(target_c_id_str);
+  std::cout << "converting target_c_id to int: " << target_c_id_str << "\n";
+  character_id target_c_id;
+  if (target_c_id_str == "")
+      target_c_id = c_id;
+  else
+      target_c_id = std::stoi(target_c_id_str);
 
   if (action == "attack1") {
     return Action(c_id, target_c_id, ActionType::ATTACK1);

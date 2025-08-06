@@ -14,6 +14,7 @@ Team::Team(json data) {
     for (size_t i = 0; i < data["members"].size(); ++i) {
         characters.emplace_back(data["members"][i]);
     }
+    decision_types = gen_decision_types();
 }
 
 const std::vector<Character>& Team::get_characters() {
@@ -27,8 +28,8 @@ bool Team::has_living_character() const {
 
 void Team::set_id(team_id _id) { 
     id = _id; 
-    for (size_t i = 1; i < characters.size(); ++i) {
-        characters[i].set_id(id + i);
+    for (size_t i = 0; i < characters.size(); ++i) {
+        characters[i].set_id((id * 1000) + i);
     }
 }
 
