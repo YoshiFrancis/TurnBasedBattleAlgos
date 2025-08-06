@@ -5,12 +5,15 @@
 #include "Stats.hpp"
 #include "enums.hpp"
 
+#include <nlohmann/json.hpp>
+
 #include <string>
 #include <vector>
 
 namespace tba {
 
 class Character {
+    using json = nlohmann::json;
 
 private:
   std::string name;
@@ -27,6 +30,8 @@ private:
 
 public:
   Character(const std::string &file_name);
+  Character(const char* file_name);
+  Character(json data);
 
   void set_id(character_id _id);
 
@@ -47,6 +52,7 @@ public:
 
 private:
   bool load_info_file(const std::string &file_path);
+  bool load_json(json data);
 };
 
 } // namespace tba

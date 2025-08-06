@@ -20,6 +20,22 @@ Character::Character(const std::string &file_path) {
   }
 }
 
+Character::Character(const char* file_path) {
+  if (!load_info_file(file_path)) {
+    std::stringstream error;
+    error << "Failed to load info file of path: " << file_path;
+    throw(std::runtime_error(error.str()));
+  }
+}
+
+Character::Character(json data) {
+    if (!load_json(data)) {
+        std::stringstream error;
+        error << "Failed to load json for character";
+        throw(std::runtime_error(error.str()));
+    }
+}
+
 void Character::set_id(character_id _id) { id = _id; }
 
 character_id Character::get_id() const { return id; }
@@ -78,6 +94,13 @@ bool Character::load_info_file(const std::string &file_path) {
     if (!f.is_open())
       return false;
     json data = json::parse(f);
+    return load_json(data);
+  } catch (std::exception &e) {
+    return false;
+  }
+}
+
+bool Character::load_json(json data) {
     name = data["name"];
     desc = data["description"];
     int health = data["health"];
@@ -89,7 +112,4 @@ bool Character::load_info_file(const std::string &file_path) {
     dm_id = static_cast<DecisionMakerID>(data["dm_id"]);
     stats = Stats(health, speed, attack_dmg, element_opt.value());
     return true;
-  } catch (std::exception &e) {
-    return false;
-  }
 }

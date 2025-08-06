@@ -3,33 +3,41 @@
 
 #include "Character.hpp"
 
-#include <vector>
+#include <nlohmann/json.hpp>
+
 #include <deque>
+#include <vector>
 
 namespace tba {
 
-
 class Team {
-    private:
-        std::vector<Character> characters;
-        team_id id;
-        std::vector<std::tuple<character_id, DecisionMakerID>> decision_types;
 
-    public:
-        Team(std::vector<Character> _characters = {});
+  using json = nlohmann::json;
 
-        const std::vector<Character>& get_characters();
+private:
+  std::string team_name;
+  std::vector<Character> characters;
+  team_id id;
+  std::vector<std::tuple<character_id, DecisionMakerID>> decision_types;
 
-        void set_id(team_id id);
-        inline team_id get_id() const { return id; }
+public:
+  Team(std::vector<Character> _characters = {});
+  Team(json data);
 
-        bool has_living_character() const;
-        std::vector<std::tuple<character_id, DecisionMakerID>> get_decision_types() const;
+  const std::vector<Character> &get_characters();
 
-    private:
-        std::vector<std::tuple<character_id, DecisionMakerID>> gen_decision_types() const;
+  void set_id(team_id id);
+  inline team_id get_id() const { return id; }
+
+  bool has_living_character() const;
+  std::vector<std::tuple<character_id, DecisionMakerID>>
+  get_decision_types() const;
+
+private:
+  std::vector<std::tuple<character_id, DecisionMakerID>>
+  gen_decision_types() const;
 };
 
-}
+} // namespace tba
 
 #endif

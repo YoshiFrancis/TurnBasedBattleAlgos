@@ -4,11 +4,12 @@
 #include "Team.hpp"
 
 #include <unordered_map>
+#include <optional>
 #include <list>
 
 namespace tba {
 
-std::list<Team> load_teams_file(const std::string& file_path);
+std::optional<std::list<Team>> load_teams_file(const std::string& file_path);
 
 class TeamContainer {
 

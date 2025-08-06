@@ -4,9 +4,11 @@
 #include "DMContainer.hpp"
 #include <gtest/gtest.h>
 
+
 TEST(DecisionMakers, TestDecisionMakerContainer) {
-    std::list<tba::Team> teams_list = tba::load_teams_file("test_battleground_0.json");
-    tba::TeamContainer tc(teams_list);
+    auto teams_list_opt = tba::load_teams_file("test_battleground_0.json");
+    ASSERT_TRUE(teams_list_opt.has_value());
+    tba::TeamContainer tc(teams_list_opt.value());
     tba::DMContainer dmc(tc);
 
     tba::Action expected_action(0, 1000, tba::ActionType::ATTACK1);

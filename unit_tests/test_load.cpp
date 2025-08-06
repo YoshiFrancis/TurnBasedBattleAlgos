@@ -58,7 +58,9 @@ TEST(Loading, TestCharacterLoad) {
 }
 
 TEST(Loading, TestTeamsLoad) {
-    std::list<tba::Team> teams_list = tba::load_teams_file("build/files/battlegrounds/test0.json");
+    auto teams_list_opt = tba::load_teams_file("build/files/battlegrounds/test0.json");
+    ASSERT_TRUE(teams_list_opt.has_value());
+    auto teams_list = teams_list_opt.value();
     std::list<tba::Team>::iterator teams_it = teams_list.begin();
     ASSERT_NE(teams_it, teams_list.end());
 
@@ -94,12 +96,14 @@ TEST(Loading, TestTeamsLoad) {
 }
 
 TEST(Loading, TestDMContainerLoad) {
-    std::list<tba::Team> teams_list = tba::load_teams_file("build/files/battlegrounds/test0.json");
+    auto teams_list_opt = tba::load_teams_file("build/files/battlegrounds/test0.json");
+    ASSERT_TRUE(teams_list_opt.has_value());
+    auto teams_list = teams_list_opt.value();
     tba::TeamContainer tc(teams_list);
     tba::DMContainer dmc(tc);
 
     tba::Action expected_action(0, 1000, tba::ActionType::ATTACK1);
-    tba::Action action = dmc.get_action(1, 1000);
+    tba::Action action = dmc.get_action(1);
     EXPECT_EQ(expected_action.get_user_id(), action.get_user_id());
     EXPECT_EQ(expected_action.get_target_id(), action.get_target_id());
     EXPECT_EQ(expected_action.get_type(), action.get_type());

@@ -8,6 +8,14 @@ Team::Team(std::vector<Character> _characters)
     : characters(_characters), decision_types(gen_decision_types())
 { }
 
+
+Team::Team(json data) {
+    team_name = data["team_name"];
+    for (size_t i = 0; i < data["members"].size(); ++i) {
+        characters.emplace_back(data["members"][i]);
+    }
+}
+
 const std::vector<Character>& Team::get_characters() {
     return characters;
 }

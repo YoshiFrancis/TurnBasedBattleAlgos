@@ -10,6 +10,7 @@ target_sources(unit_tests
     # test_battles.cpp
     test_characters.cpp
     test_decision_makers.cpp
+    test_load.cpp
 )
 
 target_link_libraries(unit_tests PRIVATE characters_lib decision_lib)
