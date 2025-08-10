@@ -10,7 +10,9 @@ target_sources(decision_lib
     src/DMContainer.cpp
     src/DecisionMaker.cpp
     src/TestAutoInput.cpp
+    src/HumanControllable.cpp
     src/dm.cpp
+    src/dm_helper.cpp
 )
 
 target_link_libraries(decision_lib PRIVATE characters_lib)

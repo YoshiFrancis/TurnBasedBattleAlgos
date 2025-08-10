@@ -27,11 +27,11 @@ public:
   ~BattleGround();
   void begin_battle();
   void end_battle();
+  bool update_state();
 
 private:
   void initialize();
 
-  void update_state();
   void ask_inputs();
   void apply_actions();
 

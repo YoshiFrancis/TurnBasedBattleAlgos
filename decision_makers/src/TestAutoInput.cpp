@@ -1,5 +1,7 @@
 #include "TestAutoInput.hpp"
 
+#include "dm_helper.hpp"
+
 #include <sstream>
 #include <iostream>
 
@@ -10,27 +12,16 @@ TestAutoInputDM::TestAutoInputDM(character_id _c_id, team_id _t_id, const TeamCo
 {}
 
 std::optional<Action> TestAutoInputDM::get_action() const {
-  std::istringstream iss(dm_state);
-  std::string action;
-  iss >> action;
-  std::string target_c_id_str;
-  iss >> target_c_id_str;
-  std::cout << "converting target_c_id to int: " << target_c_id_str << "\n";
-  character_id target_c_id;
-  if (target_c_id_str == "")
-      target_c_id = c_id;
-  else
-      target_c_id = std::stoi(target_c_id_str);
+    std::cout << "getting action str from: " << dm_state << "\n";
+    auto [ action, target_c_id ] = dm_helper::parse_acion_str(dm_state);
+    std::cout << "got target_c_id: " << target_c_id << "\n";
 
-  std::cout << "got target_c_id: " << target_c_id << "\n";
+    std::optional<ActionType> a_type = dm_helper::get_action(action);
+    if (a_type == std::nullopt) {
+        std::stringstream error;
+        error << "Provided an invalid action type: " << action;
+        throw std::runtime_error(error.str());
+    }
 
-  if (action == "attack1") {
-    return Action(c_id, target_c_id, ActionType::ATTACK1);
-  } else if (action == "attack2") {
-    return Action(c_id, target_c_id, ActionType::ATTACK2);
-  } else if (action == "attack3") {
-    return Action(c_id, target_c_id, ActionType::ATTACK3);
-  } else {
-    return Action(c_id, target_c_id, ActionType::ATTACK1);
-  }
+    return Action(c_id, target_c_id, a_type.value());
 }

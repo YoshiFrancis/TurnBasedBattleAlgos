@@ -7,13 +7,13 @@ add_executable(unit_tests)
 
 target_sources(unit_tests
     PRIVATE
-    # test_battles.cpp
+    test_battles.cpp
     test_characters.cpp
     test_decision_makers.cpp
     test_load.cpp
 )
 
-target_link_libraries(unit_tests PRIVATE characters_lib decision_lib)
+target_link_libraries(unit_tests PRIVATE characters_lib decision_lib battles_lib)
 
 target_link_libraries(unit_tests PRIVATE GTest::gtest_main)
 

@@ -16,4 +16,11 @@ std::optional<Action> DecisionMaker::get_action() const {
 
 void DecisionMaker::set_dm_state(const std::string &input) {
     dm_state = input;
+    std::cout << "set dm_state to : " << input << "\n";
+}
+
+const Character& DecisionMaker::get_character() const {
+    const Team& t = teams_ref.get_const_team_ref(t_id);
+    const Character& c = t.get_character(c_id);
+    return c;
 }

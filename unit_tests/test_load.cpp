@@ -101,7 +101,7 @@ TEST(Loading, TestDMContainerLoad) {
     auto teams_list = teams_list_opt.value();
     tba::TeamContainer tc(teams_list);
     tba::DMContainer dmc(tc);
-
+    dmc.set_dm_state(0, "attack1 0");
     tba::Action expected_action(0, 0, tba::ActionType::ATTACK1);
     std::optional<tba::Action> action_opt = dmc.get_action(0);
     ASSERT_TRUE(action_opt.has_value());

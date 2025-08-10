@@ -25,12 +25,14 @@ void BattleGround::initialize() {
   }
 }
 
-void BattleGround::update_state() {
-  while (tc.alive_teams() > 1) {
+bool BattleGround::update_state() {
+  if (tc.alive_teams() > 1) {
     ask_inputs();
     apply_actions();
+    return true;
   }
   end_battle();
+  return false;
 }
 
 // currently linear asking -> no concurrency

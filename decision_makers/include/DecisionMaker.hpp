@@ -22,6 +22,9 @@ public:
   virtual ~DecisionMaker() = default;
   virtual std::optional<Action> get_action() const;
   void set_dm_state(const std::string &input);
+
+protected:
+  const Character& get_character() const;
 };
 
 } // namespace tba
