@@ -1,31 +1,29 @@
 #ifndef TBA_BATTLEGROUND_HPP
 #define TBA_BATTLEGROUND_HPP
 
-#include "Team.hpp"
 #include "Action.hpp"
-#include "DecisionMaker.hpp"
+#include "DMContainer.hpp"
+#include "TeamContainer.hpp"
 
-#include <vector>
 #include <mutex>
 #include <queue>
 #include <unordered_map>
+#include <vector>
 
 namespace tba {
-
-
-typedef std::tuple<std::optional<std::reference_wrapper<Character>>, std::unique_ptr<DecisionMaker>> char_dm_tup;
 
 class BattleGround {
 
 private:
-  std::vector<Team>& teams;
-  std::unordered_map<character_id, char_dm_tup> characters;
+  TeamContainer tc;
+  DMContainer dmc;
+
   unsigned int round;
   std::priority_queue<Action> actions_q;
   std::mutex q_lock;
 
 public:
-  BattleGround(std::vector<Team> &_teams);
+  BattleGround(TeamContainer _teams);
   ~BattleGround();
   void begin_battle();
   void end_battle();
@@ -39,7 +37,6 @@ private:
 
   // helpers
   void get_action(size_t idx);
-
 };
 
 } // namespace tba

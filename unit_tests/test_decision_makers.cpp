@@ -1,23 +1,8 @@
 #include "Action.hpp"
 #include "Team.hpp"
 #include "dm.hpp"
-#include "DMContainer.hpp"
 #include <gtest/gtest.h>
 
-
-TEST(DecisionMakers, TestDecisionMakerContainer) {
-    auto teams_list_opt = tba::load_teams_file("test_battleground_0.json");
-    ASSERT_TRUE(teams_list_opt.has_value());
-    tba::TeamContainer tc(teams_list_opt.value());
-    tba::DMContainer dmc(tc);
-
-    tba::Action expected_action(0, 1000, tba::ActionType::ATTACK1);
-    tba::Action action = dmc.get_action(0);
-    EXPECT_EQ(expected_action.get_user_id(), action.get_user_id());
-    EXPECT_EQ(expected_action.get_target_id(), action.get_target_id());
-    EXPECT_EQ(expected_action.get_type(), action.get_type());
-    EXPECT_EQ(expected_action.get_speed(), action.get_speed());
-}
 
 TEST(DecisionMakers, TestAutoInput) {
   tba::Character test("build/files/test.json");

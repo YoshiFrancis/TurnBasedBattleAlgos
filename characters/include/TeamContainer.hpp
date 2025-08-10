@@ -15,12 +15,18 @@ class TeamContainer {
 
     private:
         std::unordered_map<team_id, Team> teams_map;
+        size_t count = 0;
 
     public:
         TeamContainer(std::list<Team> teams);
 
-        const std::unordered_map<team_id, Team> get_const_map_ref() const;
-        std::unordered_map<team_id, Team> get_map_ref();
+        size_t size() const;
+        size_t alive_teams() const;
+        std::vector<character_id> get_all_c_ids() const;
+
+
+        const std::unordered_map<team_id, Team>& get_const_map_ref() const;
+        std::unordered_map<team_id, Team>& get_map_ref();
 
         const Team& get_const_team_ref(team_id id) const;
         Team& get_team_ref(team_id id);

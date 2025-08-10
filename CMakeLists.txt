@@ -13,5 +13,5 @@ find_package(nlohmann_json REQUIRED)
 
 add_subdirectory(decision_makers)
 add_subdirectory(characters)
-# add_subdirectory(battles)
+add_subdirectory(battles)
 add_subdirectory(unit_tests)

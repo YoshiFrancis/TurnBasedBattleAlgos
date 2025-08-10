@@ -30,6 +30,7 @@ public:
   inline team_id get_id() const { return id; }
 
   bool has_living_character() const;
+  std::vector<character_id> get_c_ids() const;
   std::vector<std::tuple<character_id, DecisionMakerID>>
   get_decision_types() const;
 

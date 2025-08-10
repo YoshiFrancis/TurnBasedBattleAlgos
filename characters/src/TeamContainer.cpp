@@ -31,19 +31,43 @@ tba::load_teams_file(const std::string &file_path) {
   }
 }
 
-TeamContainer::TeamContainer(std::list<Team> teams) {
+TeamContainer::TeamContainer(std::list<Team> teams) 
+    : count(teams.size()) {
   team_id curr_id = 0;
   std::for_each(teams.begin(), teams.end(), [this, &curr_id](auto &Team) {
     teams_map[curr_id++] = std::move(Team);
   });
 }
 
-const std::unordered_map<team_id, Team>
+size_t TeamContainer::size() const {
+    return count;
+}
+
+size_t TeamContainer::alive_teams() const {
+    size_t counter = 0;
+    std::for_each(teams_map.begin(), teams_map.end(), [&counter](auto& p) {
+            const Team& t = std::get<1>(p);
+            if (t.has_living_character()) ++counter;
+            });
+    return counter;
+}
+
+std::vector<character_id> TeamContainer::get_all_c_ids() const {
+    std::vector<character_id> c_ids;
+    std::for_each(teams_map.begin(), teams_map.end(), [&c_ids](auto& p) {
+            const Team& t = std::get<1>(p);
+            auto t_c_ids = t.get_c_ids();
+            c_ids.insert(c_ids.end(), t_c_ids.begin(), t_c_ids.end());
+            });
+    return c_ids;
+}
+
+const std::unordered_map<team_id, Team>&
 TeamContainer::get_const_map_ref() const {
   return teams_map;
 }
 
-std::unordered_map<team_id, Team> TeamContainer::get_map_ref() {
+std::unordered_map<team_id, Team>& TeamContainer::get_map_ref() {
   return teams_map;
 }
 

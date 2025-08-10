@@ -26,6 +26,14 @@ bool Team::has_living_character() const {
                      [](const Character &c) { return c.is_alive(); });
 }
 
+std::vector<character_id> Team::get_c_ids() const {
+    std::vector<character_id> c_ids;
+    std::for_each(characters.cbegin(), characters.cend(), [&c_ids](const Character& c) {
+            c_ids.push_back(c.get_id());
+            });
+    return c_ids;
+}
+
 void Team::set_id(team_id _id) { 
     id = _id; 
     for (size_t i = 0; i < characters.size(); ++i) {
