@@ -9,7 +9,7 @@ TestAutoInputDM::TestAutoInputDM(character_id _c_id, team_id _t_id, const TeamCo
     : DecisionMaker(_c_id, _t_id, teams) 
 {}
 
-Action TestAutoInputDM::get_action() const {
+std::optional<Action> TestAutoInputDM::get_action() const {
   std::istringstream iss(dm_state);
   std::string action;
   iss >> action;
@@ -21,6 +21,8 @@ Action TestAutoInputDM::get_action() const {
       target_c_id = c_id;
   else
       target_c_id = std::stoi(target_c_id_str);
+
+  std::cout << "got target_c_id: " << target_c_id << "\n";
 
   if (action == "attack1") {
     return Action(c_id, target_c_id, ActionType::ATTACK1);

@@ -103,7 +103,9 @@ TEST(Loading, TestDMContainerLoad) {
     tba::DMContainer dmc(tc);
 
     tba::Action expected_action(0, 0, tba::ActionType::ATTACK1);
-    tba::Action action = dmc.get_action(0);
+    std::optional<tba::Action> action_opt = dmc.get_action(0);
+    ASSERT_TRUE(action_opt.has_value());
+    tba::Action action = action_opt.value();
     EXPECT_EQ(expected_action.get_user_id(), action.get_user_id());
     EXPECT_EQ(expected_action.get_target_id(), action.get_target_id());
     EXPECT_EQ(expected_action.get_type(), action.get_type());

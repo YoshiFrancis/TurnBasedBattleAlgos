@@ -39,8 +39,9 @@ void BattleGround::update_state() {
 void BattleGround::ask_inputs() {
   auto character_ids = tc.get_all_c_ids();
   std::for_each(character_ids.begin(), character_ids.end(), [this](auto id) {
-    Action action = dmc.get_action(id);
-    actions_q.push(action);
+    std::optional<Action> action = dmc.get_action(id);
+    if (action.has_value())
+      actions_q.push(action.value());
   });
 }
 

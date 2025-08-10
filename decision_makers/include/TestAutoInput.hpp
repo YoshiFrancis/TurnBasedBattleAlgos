@@ -11,7 +11,7 @@ class TestAutoInputDM : public DecisionMaker {
         TestAutoInputDM(character_id _c_id, team_id _t_id, const TeamContainer& teams);
 
         virtual ~TestAutoInputDM()  = default;
-        Action get_action() const override;
+        std::optional<Action> get_action() const override;
 };
 
 }

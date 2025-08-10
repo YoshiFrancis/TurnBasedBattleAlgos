@@ -10,7 +10,7 @@ DecisionMaker::DecisionMaker(character_id _c_id, team_id _t_id, const TeamContai
 
 
 // TODO
-Action DecisionMaker::get_action() const {
+std::optional<Action> DecisionMaker::get_action() const {
     return Action(c_id, c_id, ActionType::ATTACK1);
 }
 

@@ -2,10 +2,14 @@
 #define TBA_DMCONTAINER_HPP
 
 #include "Action.hpp"
+#include "DecisionMaker.hpp"
 #include "TeamContainer.hpp"
 #include "dm.hpp"
 
-#include "DecisionMaker.hpp"
+#include <memory>
+#include <optional>
+#include <string>
+#include <unordered_map>
 
 namespace tba {
 
@@ -16,8 +20,8 @@ protected:
 
 public:
   DMContainer(const TeamContainer &teams);
-  virtual ~DMContainer() = default;
-  virtual Action get_action(character_id c_id) const;
+  ~DMContainer() = default;
+  std::optional<Action> get_action(character_id c_id) const;
   void set_dm_state(character_id id, const std::string &input);
 };
 
