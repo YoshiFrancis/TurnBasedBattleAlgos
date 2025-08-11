@@ -37,6 +37,7 @@ private:
 
   // helpers
   void get_action(size_t idx);
+  Character& get_character(team_id t_id, character_id c_id);
 };
 
 } // namespace tba

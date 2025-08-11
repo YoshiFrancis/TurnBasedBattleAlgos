@@ -39,6 +39,7 @@ void Team::set_id(team_id _id) {
     for (size_t i = 0; i < characters.size(); ++i) {
         characters[i].set_id((id * 1000) + i);
     }
+    decision_types = gen_decision_types();
 }
 
 std::vector<std::tuple<character_id, DecisionMakerID>> Team::get_decision_types() const {

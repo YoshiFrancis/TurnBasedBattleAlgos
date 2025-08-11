@@ -33,10 +33,17 @@ tba::load_teams_file(const std::string &file_path) {
 
 TeamContainer::TeamContainer(std::list<Team> teams) 
     : count(teams.size()) {
-  team_id curr_id = 0;
-  std::for_each(teams.begin(), teams.end(), [this, &curr_id](auto &Team) {
-    teams_map[curr_id++] = std::move(Team);
-  });
+        std::cout << "tc initializing\n";
+        team_id curr_id = 0;
+        std::for_each(teams.begin(), teams.end(), [this, &curr_id](Team& team) {
+                team.set_id(curr_id);
+                auto characters = team.get_characters();
+                std::for_each(characters.begin(), characters.end(), [this, curr_id](auto& c) {
+                        character_id c_id = c.get_id();
+                        characters_map[c_id] = curr_id;
+                        });
+                teams_map[curr_id++] = std::move(team);
+                });
 }
 
 size_t TeamContainer::size() const {
@@ -50,6 +57,10 @@ size_t TeamContainer::alive_teams() const {
             if (t.has_living_character()) ++counter;
             });
     return counter;
+}
+
+team_id TeamContainer::get_team(character_id c_id) const {
+    return characters_map.at(c_id);
 }
 
 std::vector<character_id> TeamContainer::get_all_c_ids() const {

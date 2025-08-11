@@ -10,7 +10,8 @@ target_sources(battles_lib
     src/BattleGround.cpp
 )
 
-target_link_libraries(battles_lib PRIVATE characters_lib decision_lib)
+target_link_libraries(battles_lib PUBLIC characters_lib decision_lib)
 target_include_directories(battles_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-add_executable(battles main.cpp)
+add_executable(battle_main main.cpp)
+target_link_libraries(battle_main battles_lib)

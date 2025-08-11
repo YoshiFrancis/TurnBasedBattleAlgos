@@ -15,7 +15,7 @@ std::optional<Action> HumanControllable::get_action() const {
         return std::nullopt;
 
     while (true) {
-        std::cout << "Enter: Action c_id: ";
+        std::cout << "Enter <ActionType> <c_id>: ";
         std::string input;
         std::getline(std::cin, input);
         auto [ action_str, target_c_id ] = dm_helper::parse_acion_str(input);

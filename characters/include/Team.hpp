@@ -28,7 +28,8 @@ public:
 
   void set_id(team_id id);
   inline team_id get_id() const { return id; }
-  inline const Character& get_character(character_id c_id) const { return characters[0]; }
+  inline const Character& get_const_character(character_id c_id) const { return characters[0]; }
+  inline Character& get_character(character_id) { return characters[0]; }
 
   bool has_living_character() const;
   std::vector<character_id> get_c_ids() const;
