@@ -49,7 +49,7 @@ void BattleGround::apply_actions() {
   while (!actions_q.empty()) {
     Action action = actions_q.top();
     character_id user_id = action.get_user_id();
-    character_id target_id = action.get_user_id();
+    character_id target_id = action.get_target_id();
     team_id user_t_id = tc.get_team(user_id);
     team_id target_t_id = tc.get_team(target_id);
     apply_action(get_character(user_t_id, user_id), 

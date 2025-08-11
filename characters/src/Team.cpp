@@ -1,6 +1,7 @@
 #include "Team.hpp"
 
 #include <algorithm>
+#include <iostream>
 
 using namespace tba;
 
@@ -40,6 +41,26 @@ void Team::set_id(team_id _id) {
         characters[i].set_id((id * 1000) + i);
     }
     decision_types = gen_decision_types();
+}
+
+
+const Character& Team::get_const_character(character_id c_id) const {
+    auto it = std::find_if(characters.cbegin(), characters.cend(), [c_id](const Character& c) {
+            return c.get_id() == c_id;
+            });
+    if (it != characters.cend())
+        return *it;
+    return characters[0];
+}
+
+Character& Team::get_character(character_id c_id) {
+    auto it = std::find_if(characters.begin(), characters.end(), [c_id](Character& c) {
+            return c.get_id() == c_id;
+            });
+    if (it != characters.end())
+        return *it;
+    return characters[0];
+
 }
 
 std::vector<std::tuple<character_id, DecisionMakerID>> Team::get_decision_types() const {
